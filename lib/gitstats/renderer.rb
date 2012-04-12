@@ -19,7 +19,7 @@ class Renderer
 
       if r.nil?
         puts "copying '#{file}' ..." if @verbose
-        File.copy(File.join(@templatedir, file), @outdir)
+        FileUtils.copy(File.join(@templatedir, file), @outdir)
       else
         puts "rendering '#{file}' using #{r.name} ..." if @verbose
         r.render(file, stats)
