@@ -8,6 +8,7 @@ require 'rubygems'
 require 'haml'
 require 'sass'
 require 'compass'
+require 'compass-blueprint'
 require 'gnuplot'
 
 $LOAD_PATH.unshift(File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib')))
