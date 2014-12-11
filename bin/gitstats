@@ -96,7 +96,25 @@ end
 
 $options[:statcache] = File.join($options[:out], '.statcache') if $options[:statcache].nil?
 $options[:commitcache_dir] = $options[:out] if $options[:commitcache_dir].nil?
-$options[:template] = File.expand_path(File.join(File.dirname(__FILE__), '..', 'template')) if $options[:template].nil?
+
+# template selection
+# -> use the packaged default template when nothing has been specified
+# -> use the specified template when it exists
+# -> use an packaged alternative template when the names match
+templateRoot = File.expand_path(File.join(File.dirname(__FILE__), '..', 'template'))
+$options[:template] = File.join(templateRoot, 'default') if $options[:template].nil?
+
+unless File.directory?($options[:template])
+  template = File.join(templateRoot, $options[:template])
+  $options[:template] = template if File.directory?(template)
+end
+
+puts "Determined Template: #{$options[:template]}" if $options[:verbose]
+unless File.directory?($options[:template])
+  STDERR.puts "Template (#{$options[:template]}) could not be found!"
+  exit 1
+end
+
 
 FileUtils.mkdir_p($options[:out])
 
