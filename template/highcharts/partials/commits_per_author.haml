@@ -1,0 +1,17 @@
+- data        = stats.author_stats.map{ |name,c| [name.to_s, c.commits, c.lines_added+c.lines_deleted] }.sort{ |a, b| b[1] <=> a[1] }
+
+- block(:commits_per_author) do
+  #chart_commits_per_author.col-md-10{:style => "height: 500px"}
+  
+  %script
+    var chart_commits_per_author          = new Object();
+    chart_commits_per_author.label        = "Commits per author";
+    chart_commits_per_author.label_y_axis = "Number of commits";
+    chart_commits_per_author.label_y2_axis = "Changed Lines";
+    chart_commits_per_author.target       = '#chart_commits_per_author';
+    chart_commits_per_author.categories   = #{data.map{ |v| v[0] }};
+    chart_commits_per_author.series       = [{"name":"Commits","yAxis": 0,"data":#{data.map{ |v| v[1] }}},{"name":"Changes","yAxis": 1,"data":#{data.map{ |v| v[2] }}}];
+  
+    $(document).ready(function() {
+    createColumnChart(chart_commits_per_author);
+    });
