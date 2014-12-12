@@ -3,9 +3,8 @@ module BlockHelper
     partial :blocktoc, { :blocks => args }
   end
 
-  def block(name)
-    haml_concat("<div id=\"block-#{name.to_s}\" class=\"blockcontainer\">")
-#     haml_concat(partial(:blockheader, { :name => name }))
+  def block(name,width=6)
+    haml_concat("<div id=\"block-#{name.to_s}\" class=\"blockcontainer col-md-#{width}\">")
     yield
     haml_concat('</div>')
   end

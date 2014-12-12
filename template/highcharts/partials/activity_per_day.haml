@@ -1,7 +1,7 @@
 - res = stats.date_stats.map{ |k,v| [k,v.commits, v.lines_added + v.lines_deleted] }
 
 - block(:activity_per_day) do
-  #chart_activity_per_day.col-md-5{:style => "height: 500px"}
+  #chart_activity_per_day{:style => "height: 500px"}
   %script
     var chart_activity_per_day           = new Object();
     chart_activity_per_day.label         = '#{label(:activity_per_day)}';

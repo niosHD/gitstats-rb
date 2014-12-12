@@ -1,9 +1,9 @@
 - authors = stats.author_stats.to_a.sort{ |a, b| b[1].commits <=> a[1].commits }
 
-- block(:commits_per_author_detailed) do
+- block(:commits_per_author_detailed,12) do
   - authors.each_with_index do |v,i|
     - days = v[1].daystats.map{|d,s| [d,s.commits]}.sort{|a,b| a[0] <=> b[0]}
-    %div.thumbnail.col-md-5
+    %div.thumbnail.col-md-6
       %h4
         #{v[0].name}
         %br

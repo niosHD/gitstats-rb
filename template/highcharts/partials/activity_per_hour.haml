@@ -1,6 +1,7 @@
 - commits = Hash[(0..23).to_a.zip([0]*24)].merge(Hash[stats.hour_stats.map { |month,s| [month,s.commits] }])
+
 - block(:activity_per_hour) do
-  #chart_activity_per_hour.col-md-5{:style => "height: 500px"}
+  #chart_activity_per_hour{:style => "height: 500px"}
   %script
     var chart_activity_per_hour           = new Object();
     chart_activity_per_hour.label         = '#{label(:activity_per_hour)}';

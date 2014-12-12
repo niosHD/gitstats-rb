@@ -4,7 +4,7 @@
 - changes        = lines_added.merge(lines_deleted) { |key,old,new| old+new }
 
 - block(:activity_per_week_last_year) do
-  #chart_activity_per_week_last_year.col-md-5{:style => "height: 500px"}
+  #chart_activity_per_week_last_year{:style => "height: 500px"}
 
   %script
     var chart_activity_per_week_last_year           = new Object();

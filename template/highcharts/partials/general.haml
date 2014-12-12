@@ -1,7 +1,7 @@
 - commits = stats.general_stats.commits
 - age = ((stats.general_stats.last_commit - stats.general_stats.first_commit + 86399) / 86400).to_i
 - active = stats.general_stats.days.size
-- block(:general) do
+- block(:general,12) do
   %table.table
     %tbody
       %tr

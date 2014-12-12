@@ -1,7 +1,7 @@
 - data        = stats.author_stats.map{ |name,c| [name.to_s, c.commits, c.lines_added+c.lines_deleted] }.sort{ |a, b| b[1] <=> a[1] }
 
-- block(:commits_per_author) do
-  #chart_commits_per_author.col-md-10{:style => "height: 500px"}
+- block(:commits_per_author,12) do
+  #chart_commits_per_author{:style => "height: 500px"}
   
   %script
     var chart_commits_per_author          = new Object();
