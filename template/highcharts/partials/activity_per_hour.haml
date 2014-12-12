@@ -1,0 +1,15 @@
+- commits = Hash[(0..23).to_a.zip([0]*24)].merge(Hash[stats.hour_stats.map { |month,s| [month,s.commits] }])
+- block(:activity_per_hour) do
+  #chart_activity_per_hour.col-md-5{:style => "height: 500px"}
+  %script
+    var chart_activity_per_hour           = new Object();
+    chart_activity_per_hour.label         = '#{label(:activity_per_hour)}';
+    chart_activity_per_hour.label_y_axis  = "Hour";
+    chart_activity_per_hour.label_x_axis  = "Number of commits";
+    chart_activity_per_hour.target        = '#chart_activity_per_hour';
+    chart_activity_per_hour.categories    = ["0h","1h","2h","3h","4h","5h","6h","7h","8h","9h","10h","11h","12h","13h","14h","15h","16h","17h","18h","19h","20h","21h","22h","23h"];
+    chart_activity_per_hour.series        = [{"name":"Commits","data":[#{commits.values.join(",")}]}];
+
+    $(document).ready(function() {
+    createBarChart(chart_activity_per_hour);
+    });

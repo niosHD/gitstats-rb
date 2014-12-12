@@ -11,9 +11,10 @@ module BlockHelper
   end
 
   def blocks(*args)
-    @toc = blocktoc(*args)
+    @toc ||= []
     ret = ""
     args.each do |block|
+      @toc << block
       if block_given?
         ret += yield(partial(block))
       else
