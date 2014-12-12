@@ -107,9 +107,13 @@ function createAreaChart(element){
     },
     xAxis: {
       categories: element.categories,
-      tickmarkPlacement: 'on',
+      tickInterval: parseInt(element.categories.length / 12),
       title: {
         text: null
+      },
+      labels: {
+        rotation: -45,
+        y: 35
       }
     },
     yAxis: [{
@@ -161,6 +165,9 @@ function createBarChart(element){
     },
     title: {
       text: element.label
+    },
+    credits: {
+      enabled: false
     },
     xAxis: {
       categories: element.categories,

@@ -1,0 +1,17 @@
+- res = stats.date_stats.map{ |k,v| [k,v.commits, v.lines_added + v.lines_deleted] }
+
+- block(:activity_per_day) do
+  #chart_activity_per_day.col-md-5{:style => "height: 500px"}
+  %script
+    var chart_activity_per_day           = new Object();
+    chart_activity_per_day.label         = '#{label(:activity_per_day)}';
+    chart_activity_per_day.label_y_axis  = "Number of commits";
+    chart_activity_per_day.label_y2_axis = "Changed Lines";
+    chart_activity_per_day.target        = '#chart_activity_per_day';
+    chart_activity_per_day.categories    = #{res.map{|v| v[0].strftime("%F")}};
+    chart_activity_per_day.series        = [{"name":"Commits","yAxis": 0,"data":#{res.map{|v| v[1]}}},{"name":"Changes","yAxis": 1,"data":#{res.map{|v| v[2]}}}];
+
+    $(document).ready(function() {
+    createAreaChart(chart_activity_per_day);
+    });
+
