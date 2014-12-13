@@ -183,3 +183,43 @@ function createBarChart(element){
     series: element.series
   });
 }
+
+function createHeatMap(element){
+  $(element.target).highcharts({
+    chart: {
+      type: 'heatmap'
+    },
+    title: {
+      text: element.label
+    },
+    credits: {
+      enabled: false
+    },
+    xAxis: {
+      categories: element.categories_x,
+      title: element.label_x
+    },
+    yAxis: {
+      categories: element.categories_y,
+      title: element.label_y
+    },
+    colorAxis: {
+      min: 0,
+      minColor: '#FFFFFF',
+      maxColor: Highcharts.getOptions().colors[0]
+    },
+    series: [{
+      name: element.series_name,
+      borderWidth: 1,
+      data: element.series_data,
+      dataLabels: {
+        enabled: true,
+        color: 'black',
+        style: {
+          textShadow: 'none',
+          HcTextStroke: null
+        }
+      }
+    }]
+  });
+}

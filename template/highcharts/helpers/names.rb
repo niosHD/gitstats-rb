@@ -9,6 +9,7 @@ module NamesHelper
       :activity_per_week_last_year => 'Activity per week (last year)',
       :activity_per_hour => 'Activity per hour',
       :activity_per_weekday => 'Activity per weekday',
+      :activity_per_weekday_and_hour => 'Activity per weekday and hour',
       :activity_per_month => 'Activity per month',
       :commits_per_year => 'Commits per year',
       :commits_per_yearmonth => 'Commits per year and month',
@@ -23,7 +24,6 @@ module NamesHelper
       :lastweeks => 'Last years weeks',
       :fileschart => 'Fileschart',
       :lineschart => 'Lineschart',
-      :commitchart => 'Commitchart',
       :globalstats => 'Overview'
     }
 
