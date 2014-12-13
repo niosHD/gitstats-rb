@@ -28,7 +28,8 @@ function createColumnChart(element){
     plotOptions: {
       column: {
         pointPadding: 0.2,
-        borderWidth: 0
+        borderWidth: 0,
+        stacking: 'normal'
       }
     },
     tooltip: {
