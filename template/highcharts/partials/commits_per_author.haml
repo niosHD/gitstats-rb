@@ -10,7 +10,7 @@
     chart_commits_per_author.label_y2_axis = "Changed Lines";
     chart_commits_per_author.target       = '#chart_commits_per_author';
     chart_commits_per_author.categories   = #{data.map{ |v| v[0] }};
-    chart_commits_per_author.series       = [{"name":"Commits","yAxis": 0,"data":#{data.map{ |v| v[1] }}},{"name":"Changes","yAxis": 1,"data":#{data.map{ |v| v[2] }}}];
+    chart_commits_per_author.series       = [{"name":"Commits","yAxis": 0,"data":#{data.map{ |v| v[1] }}},{"name":"Changed Lines","yAxis": 1,"data":#{data.map{ |v| v[2] }}}];
   
     $(document).ready(function() {
     createColumnChart(chart_commits_per_author);

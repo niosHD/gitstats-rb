@@ -13,7 +13,7 @@
     chart_activity_per_week_last_year.label_y2_axis = 'Number of changes';
     chart_activity_per_week_last_year.target        = '#chart_activity_per_week_last_year';
     chart_activity_per_week_last_year.categories    = #{(1..52).map{ |v| v.to_s }.reverse};
-    chart_activity_per_week_last_year.series        = [{"name":"Commits","yAxis": 0,"data":#{commits.values.reverse}},{"name":"Changes","yAxis": 1,"data":#{changes.values.reverse}}];
+    chart_activity_per_week_last_year.series        = [{"name":"Commits","yAxis": 0,"data":#{commits.values.reverse}},{"name":"Changed Lines","yAxis": 1,"data":#{changes.values.reverse}}];
 
     $(document).ready(function() {
     createAreaChart(chart_activity_per_week_last_year);

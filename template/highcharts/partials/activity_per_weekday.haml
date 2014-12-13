@@ -2,8 +2,7 @@
 - result   = commits.map { |d,c| [weekday(d),c] }
 
 - block(:activity_per_weekday) do
-  %div{:style => "height: 500px"}
-    #chart_activity_per_weekday{:style => "height: 350px"}
+  #chart_activity_per_weekday{:style => "height: 500px"}
 
   %script
     var chart_activity_per_weekday     = new Object();
