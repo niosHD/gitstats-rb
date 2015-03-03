@@ -14,6 +14,10 @@ For example:
 
     gitstats gitstats-ruby:.:master
 
+To use the new template based on [bootstrap](http://getbootstrap.com) and [highcharts](http://www.highcharts.com) (kindly contributed by niosHD) try the following:
+
+    gitstats -t highcharts gitstats-ruby:.:master
+
 For more options please read sections about caching below or run `gitstats -h`.
 
 ## Caching
