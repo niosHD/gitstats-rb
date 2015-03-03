@@ -60,7 +60,7 @@ class HamlRenderer
       puts "rendering layout '#{helper.get_layout}' ..." if @verbose
       layout = IO::readlines(File.join(@templatedir, 'layouts', helper.get_layout + '.haml')).join('')
       engine = Haml::Engine.new(layout)
-      lines = engine.render(Object.new, :content => lines)
+      lines = engine.render(helper, :content => lines)
     end
 
     File.new(ofile, 'w').write(lines)

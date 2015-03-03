@@ -1,0 +1,19 @@
+- commits        = Hash[(1..12).to_a.zip([0]*12)].merge(Hash[stats.month_stats.map { |month,commit| [month,commit.commits] }])
+- lines_added    = Hash[(1..12).to_a.zip([0]*12)].merge(Hash[stats.month_stats.map { |month,commit| [month,commit.lines_added] }])
+- lines_deleted  = Hash[(1..12).to_a.zip([0]*12)].merge(Hash[stats.month_stats.map { |month,commit| [month,commit.lines_deleted] }])
+
+- block(:activity_per_month) do
+  #chart_activity_per_month{:style => "height: 500px"}
+
+  %script
+    var chart_activity_per_month           = new Object();
+    chart_activity_per_month.label         = '#{label(:activity_per_month)}';
+    chart_activity_per_month.label_y_axis  = "Number of commits";
+    chart_activity_per_month.label_y2_axis = "Changed lines";
+    chart_activity_per_month.target        = '#chart_activity_per_month';
+    chart_activity_per_month.categories    = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    chart_activity_per_month.series        = [{"name":"Commits","yAxis": 0,"data":#{commits.values}},{"name":"Added lines","color": "#6CC644","yAxis": 1,"data":#{lines_added.values}},{"name":"Deleted lines","color": "#BD2C00","yAxis": 1,"data":#{lines_deleted.values}}];
+
+    $(document).ready(function() {
+    createAreaChart(chart_activity_per_month);
+    });

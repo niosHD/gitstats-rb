@@ -1,6 +1,6 @@
 # gitstats-ruby
 
-gitstats-ruby is a clone of http://gitstats.sourceforce.net written in ruby. It's written to support templates and should be easily extendable.
+gitstats-ruby is a clone of http://gitstats.sourceforge.net written in ruby. It's written to support templates and should be easily extendable.
 
 ## Installation
 

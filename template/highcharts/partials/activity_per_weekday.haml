@@ -1,0 +1,15 @@
+- commits  = Hash[(0..6).to_a.zip([0]*7)].merge(Hash[stats.wday_stats.map { |day,commit| [(day + 6) % 7,commit.commits] }])
+- result   = commits.map { |d,c| [weekday(d),c] }
+
+- block(:activity_per_weekday) do
+  #chart_activity_per_weekday{:style => "height: 500px"}
+
+  %script
+    var chart_activity_per_weekday     = new Object();
+    chart_activity_per_weekday.label   = '#{label(:activity_per_weekday)}';
+    chart_activity_per_weekday.target  = '#chart_activity_per_weekday';
+    chart_activity_per_weekday.series  = [{"name":"Commits","data":#{result.to_s}}];
+
+    $(document).ready(function() {
+    createPieChart(chart_activity_per_weekday);
+    });
