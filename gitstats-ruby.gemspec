@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'haml'
   s.add_dependency 'sass'
   s.add_dependency 'compass'
+  s.add_dependency 'compass-blueprint'
   s.add_dependency 'gnuplot'
 
   s.files         = `git ls-files`.split("\n")
