@@ -3,7 +3,7 @@ module NamesHelper
     @names ||= {
       :repos => 'Repositories',
       :general => 'Stats',
-      :commits_per_author => 'Commits per author',
+      :commits_per_author => 'Activity per author',
       :commits_per_author_detailed => 'Author details',
       :activity_per_day => 'Activity per day',
       :activity_per_week_last_year => 'Activity per week (last year)',

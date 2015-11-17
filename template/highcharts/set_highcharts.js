@@ -44,51 +44,11 @@ function createColumnChart(element){
   });
 }
 
-function createZoomableAreaChart(element){
-  $(element.target).highcharts({
-    chart: {
-      type: "areaspline",
-      zoomType: "x"
-    },
-    title: {
-      text: element.label
-    },
-    credits: {
-      enabled: false
-    },
-    xAxis: {
-      categories: element.categories,
-      tickInterval: parseInt(element.categories.length / 10),
-      labels: {
-        rotation: -45,
-        y: 35
-      }
-    },
-    yAxis: {
-      title: {
-        text: ""
-      }
-    },
-    legend: element.legend,
-    plotOptions: {
-      areaspline: {
-        fillOpacity: 0.2
-      },
-      series: {
-        lineWidth: 1,
-        marker: {
-          enabled: false
-        }
-      }
-    },
-    series: element.series
-  });
-}
-
 function createAreaChart(element){
   $(element.target).highcharts({
     chart: {
-      type: 'areaspline'
+      type: 'areaspline',
+      zoomType: "x"
     },
     title: {
       text: element.label
@@ -111,6 +71,62 @@ function createAreaChart(element){
       tickInterval: parseInt(element.categories.length / 12),
       title: {
         text: null
+      },
+      labels: {
+        rotation: -45,
+        y: 35
+      }
+    },
+    yAxis: [{
+      title: {
+        text: element.label_y_axis,
+      }
+    },{
+      title: {
+        text: element.label_y2_axis,
+      },
+      opposite: true
+    }],
+    tooltip: {
+      shared: true,
+    },
+    plotOptions: {
+      areaspline: {
+        fillOpacity: 0.2
+      }
+    },
+    series: element.series
+  });
+}
+
+function createDateAreaChart(element){
+  $(element.target).highcharts({
+    chart: {
+      type: 'areaspline',
+      zoomType: 'x'
+    },
+    title: {
+      text: element.label
+    },
+    credits: {
+      enabled: false
+    },
+    legend: {
+      layout: 'vertical',
+      align: 'left',
+      verticalAlign: 'top',
+      x: 50,
+      y: 50,
+      floating: true,
+      borderWidth: 1,
+      backgroundColor: '#FFFFFF'
+    },
+    xAxis: {
+	  min: element.x_min,
+	  max: element.x_max,
+      type: 'datetime',
+      title: {
+        text: 'Date'
       },
       labels: {
         rotation: -45,

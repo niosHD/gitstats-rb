@@ -1,17 +1,22 @@
-- res = stats.date_stats.map{ |k,v| [k,v.commits, v.lines_added, v.lines_deleted] }
-
+- fc = stats.general_stats.first_commit
+- lc = stats.general_stats.last_commit
+- res = stats.date_stats.map{ |k,v| [ k,"Date.UTC(#{k.year},#{k.mon-1},#{k.mday})",v.commits, v.lines_added, v.lines_deleted] }.sort!{ |a,b| a[0] <=> b[0]}
+- commits_str       = "[#{res.map{|v| "[#{v[1]}, #{v[2]}]"}.join(", ")}]"
+- added_lines_str   = "[#{res.map{|v| "[#{v[1]}, #{v[3]}]"}.join(", ")}]"
+- deleted_lines_str = "[#{res.map{|v| "[#{v[1]}, #{v[4]}]"}.join(", ")}]"
 - block(:activity_per_day) do
   #chart_activity_per_day{:style => "height: 500px"}
   %script
     var chart_activity_per_day           = new Object();
+    chart_activity_per_day.x_min         = Date.UTC(#{fc.year},#{fc.mon-1},#{fc.mday})
+    chart_activity_per_day.x_max         = Date.UTC(#{lc.year},#{lc.mon-1},#{lc.mday})
     chart_activity_per_day.label         = '#{label(:activity_per_day)}';
     chart_activity_per_day.label_y_axis  = "Number of commits";
     chart_activity_per_day.label_y2_axis = "Changed lines";
     chart_activity_per_day.target        = '#chart_activity_per_day';
-    chart_activity_per_day.categories    = #{res.map{|v| v[0].strftime("%F")}};
-    chart_activity_per_day.series        = [{"name":"Commits","yAxis": 0,"data":#{res.map{|v| v[1]}}},{"name":"Added lines","color": "#6CC644","yAxis": 1,"data":#{res.map{|v| v[2]}}},{"name":"Deleted lines","color": "#BD2C00","yAxis": 1,"data":#{res.map{|v| v[3]}}}];
+    chart_activity_per_day.series        = [{"name":"Commits","yAxis": 0,"data":#{commits_str}},{"name":"Added lines","color": "#6CC644","yAxis": 1,"data":#{added_lines_str}},{"name":"Deleted lines","color": "#BD2C00","yAxis": 1,"data":#{deleted_lines_str}}];
 
     $(document).ready(function() {
-    createAreaChart(chart_activity_per_day);
+    createDateAreaChart(chart_activity_per_day);
     });
 

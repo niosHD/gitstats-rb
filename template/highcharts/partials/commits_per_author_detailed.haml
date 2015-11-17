@@ -1,25 +1,32 @@
 - authors = stats.author_stats.to_a.sort{ |a, b| b[1].commits <=> a[1].commits }
+- fc = stats.general_stats.first_commit
+- lc = stats.general_stats.last_commit
 
 - block(:commits_per_author_detailed,12) do
   - authors.each_with_index do |v,i|
-    - days = v[1].daystats.map{|d,s| [d,s.commits]}.sort{|a,b| a[0] <=> b[0]}
+    - days = v[1].daystats.map{|d,s| [d, "Date.UTC(#{d.year},#{d.mon-1},#{d.mday})", s.commits, s.lines_added, s.lines_deleted]}.sort{|a,b| a[0] <=> b[0]}
+    - commits_str = "[#{days.map{|v| "[#{v[1]}, #{v[2]}]"}.join(", ")}]"
+    - added_lines_str   = "[#{days.map{|v| "[#{v[1]}, #{v[3]}]"}.join(", ")}]"
+    - deleted_lines_str = "[#{days.map{|v| "[#{v[1]}, #{v[4]}]"}.join(", ")}]"
     %div.thumbnail.col-md-6
       %h4
         #{v[0].name}
         %br
         %small= v[0].email 
       %h5= v[1].commits
-      %div{:id => "chart_commits_per_author_#{i}", :style => "height: 200px; width: 100%"}
+      %div{:id => "chart_commits_per_author_#{i}", :style => "height: 300px; width: 100%"}
     
     %script
       var chart_commits_per_author_#{i}           = new Object();
-      chart_commits_per_author_#{i}.label         = "Commits per author";
+      chart_commits_per_author_#{i}.x_min         = Date.UTC(#{fc.year},#{fc.mon-1},#{fc.mday})
+      chart_commits_per_author_#{i}.x_max         = Date.UTC(#{lc.year},#{lc.mon-1},#{lc.mday})
+      chart_commits_per_author_#{i}.label         = '#{label(:commits_per_author_detailed)}';
       chart_commits_per_author_#{i}.label_y_axis  = "Number of commits";
+      chart_commits_per_author_#{i}.label_y2_axis = "Changed lines";
       chart_commits_per_author_#{i}.target        = '#chart_commits_per_author_#{i}';
-      chart_commits_per_author_#{i}.categories    = #{days.map{|d,c| d.strftime("%F")}};
-      chart_commits_per_author_#{i}.series        = [{"name":"Commits","data":#{days.map{|d,c| c}}}];
+      chart_commits_per_author_#{i}.series        = [{"name":"Commits","yAxis": 0,"data":#{commits_str}},{"name":"Added lines","color": "#6CC644","yAxis": 1,"data":#{added_lines_str}},{"name":"Deleted lines","color": "#BD2C00","yAxis": 1,"data":#{deleted_lines_str}}];
       chart_commits_per_author_#{i}.legend        = {};
       
       $(document).ready(function() {
-      createZoomableAreaChart(chart_commits_per_author_#{i});
+      createDateAreaChart(chart_commits_per_author_#{i});
       });
