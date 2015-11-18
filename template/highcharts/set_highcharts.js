@@ -1,3 +1,18 @@
+function popUpGraph(existingChart) {
+  var options = existingChart.options;
+  var width  = $('#myModal').width()*0.90;
+  var height = $('#myModal').height()*0.85;
+  var popupChart = new Highcharts.Chart(Highcharts.merge(options, {
+      chart: {
+        renderTo: 'modal-body',
+        width: width,
+        height: height
+        }
+  }));
+
+  $('#myModal').modal('show');
+}
+
 function createColumnChart(element){
   $(element.target).highcharts({
     chart: {
@@ -40,7 +55,18 @@ function createColumnChart(element){
       shared: true,
       useHTML: true
     },
-    series: element.series
+    series: element.series,
+    exporting: {
+      buttons: {
+        customButton: {
+          x: -40,
+          onclick: function () {
+            popUpGraph(this);
+          },
+          symbol: 'square'
+        }
+      }
+    }
   });
 }
 
@@ -95,7 +121,18 @@ function createAreaChart(element){
         fillOpacity: 0.2
       }
     },
-    series: element.series
+    series: element.series,
+    exporting: {
+      buttons: {
+        customButton: {
+          x: -40,
+          onclick: function () {
+            popUpGraph(this);
+          },
+          symbol: 'square'
+        }
+      }
+    }
   });
 }
 
@@ -151,7 +188,18 @@ function createDateAreaChart(element){
         fillOpacity: 0.2
       }
     },
-    series: element.series
+    series: element.series,
+    exporting: {
+      buttons: {
+        customButton: {
+          x: -40,
+          onclick: function () {
+            popUpGraph(this);
+          },
+          symbol: 'square'
+        }
+      }
+    }
   });
 }
 
@@ -171,7 +219,18 @@ function createPieChart(element){
         text: ""
       }
     },
-    series: element.series
+    series: element.series,
+    exporting: {
+      buttons: {
+        customButton: {
+          x: -40,
+          onclick: function () {
+            popUpGraph(this);
+          },
+          symbol: 'square'
+        }
+      }
+    }
   });
 }
 
@@ -197,7 +256,18 @@ function createBarChart(element){
         text: element.label_x_axis
       }
     },
-    series: element.series
+    series: element.series,
+    exporting: {
+      buttons: {
+        customButton: {
+          x: -40,
+          onclick: function () {
+            popUpGraph(this);
+          },
+          symbol: 'square'
+        }
+      }
+    }
   });
 }
 
@@ -237,6 +307,17 @@ function createHeatMap(element){
           HcTextStroke: null
         }
       }
-    }]
+    }],
+    exporting: {
+      buttons: {
+        customButton: {
+          x: -40,
+          onclick: function () {
+            popUpGraph(this);
+          },
+          symbol: 'square'
+        }
+      }
+    }
   });
 }
