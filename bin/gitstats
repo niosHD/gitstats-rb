@@ -190,6 +190,9 @@ ensure
   end
 end
 
+# exit early if there has been no commits
+exit 0 if stat.general_stats.commits == 0
+
 puts 'rendering ...' unless $options[:quiet]
 renderer = Renderer.new($options[:template], $options[:out], $options[:verbose])
 renderer.render(stat)
