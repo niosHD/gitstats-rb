@@ -90,8 +90,10 @@ class LastWeeksCommitStats
   include StatsHash
 
   def initialize
+    today = Time.now.to_date
+    nextCwStart = Date.commercial(today.cwyear,today.cweek)+7
     @hash = Hash.new
-    @base = Time.now
+    @base = nextCwStart.to_time
   end
 
   def update(commit)
