@@ -48,6 +48,14 @@ module NamesHelper
       'Sunday'
     end
   end
+
+  def monthnames()
+    return ["January","February","March","April","May","June","July","August","September","October","November","December"]
+  end
+
+  def monthname(month)
+    return monthnames[month-1]
+  end
 end
 
 self.extend NamesHelper

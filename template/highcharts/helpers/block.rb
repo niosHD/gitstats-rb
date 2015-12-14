@@ -4,7 +4,7 @@ module BlockHelper
   end
 
   def block(name,width=6)
-    haml_concat("<div id=\"block-#{name.to_s}\" class=\"blockcontainer col-md-#{width}\">")
+    haml_concat("<div id=\"block-#{name.to_s}\" class=\"blockcontainer col-md-#{width} panel panel-default\">")
     yield
     haml_concat('</div>')
   end

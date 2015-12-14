@@ -15,6 +15,29 @@
         %small= v[0].email 
       %h5= v[1].commits
       %div{:id => "chart_commits_per_author_#{i}", :style => "height: 300px; width: 100%"}
+
+      %div.panel.panel-default
+        %div.panel-heading{"data-toggle" => "collapse", "data-target" => "#commits_per_author_#{i}_box"}&= label(:activity_per_day)
+        %div.panel-body.collapse{:id => "commits_per_author_#{i}_box"}
+          %table.table.table-striped.table-hover{:id => "commits_per_author_#{i}_table"}
+            %thead
+              %tr
+                %th Date
+                %th Commits
+                %th Files added
+                %th Files deleted
+                %th Lines added
+                %th Lines deleted
+            %tbody
+              - author_daystats = v[1].daystats
+              - author_daystats.each do |date, commits|
+                %tr
+                  %td&= date
+                  %td&= commits.commits
+                  %td&= commits.files_added
+                  %td&= commits.files_deleted
+                  %td&= commits.lines_added
+                  %td&= commits.lines_deleted
     
     %script
       var chart_commits_per_author_#{i}           = new Object();
@@ -29,4 +52,7 @@
       
       $(document).ready(function() {
       createDateAreaChart(chart_commits_per_author_#{i});
+      $("#commits_per_author_#{i}_table").DataTable({
+      "order": [[ 0, "asc" ]]
+      });
       });

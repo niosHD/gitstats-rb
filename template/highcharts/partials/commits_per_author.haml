@@ -2,7 +2,35 @@
 
 - block(:commits_per_author,12) do
   #chart_commits_per_author{:style => "height: 500px"}
-  
+
+  %div.panel.panel-default
+    %div.panel-heading{"data-toggle" => "collapse", "data-target" => "#author_table_box"}&= label(:commits_per_author)
+    %div.panel-body.collapse#author_table_box
+      %table.table.table-striped.table-hover#author_table
+        %thead
+          %tr
+            %th Author
+            %th Commits
+            %th Percent
+            %th Files added
+            %th Files deleted
+            %th Lines added
+            %th Lines deleted
+            %th First commit
+            %th Last commit
+        %tbody
+          - stats.author_stats.sort{ |a, b| a[1].commits <=> b[1].commits }.reverse.each do |author, commits|
+            %tr
+              %td&= author
+              %td&= commits.commits
+              %td&= '%.2f%%' % (commits.commits * 100.0 / stats.num_commits.to_f)
+              %td&= commits.files_added
+              %td&= commits.files_deleted
+              %td&= commits.lines_added
+              %td&= commits.lines_deleted
+              %td&= commits.first_commit.strftime('%Y-%m-%d')
+              %td&= commits.last_commit.strftime('%Y-%m-%d')
+
   %script
     var chart_commits_per_author          = new Object();
     chart_commits_per_author.label        = '#{label(:commits_per_author)}';
@@ -14,4 +42,7 @@
   
     $(document).ready(function() {
     createColumnChart(chart_commits_per_author);
+    $('#author_table').DataTable({
+    "order": [[ 1, "desc" ]]
+    });
     });
