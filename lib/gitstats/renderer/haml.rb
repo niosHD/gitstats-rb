@@ -2,11 +2,12 @@ class HamlRenderer
   class HamlHelper
     attr_reader :stats
 
-    def initialize(templatedir, stats, verbose)
+    def initialize(templatedir, stats, verbose, engineConfig)
       @templatedir = templatedir
       @stats = stats
       @verbose = verbose
       @layout = nil
+      @engineConfig = engineConfig
 
       Dir.glob(File.join(templatedir, 'helpers', '*.rb')).sort.each do |file|
         eval(IO::readlines(file).join(''))
@@ -18,7 +19,7 @@ class HamlRenderer
       puts "rendering partial '#{name}' ..." if @verbose
       hash = hash.to_h unless hash.is_a? Hash
       lines = IO::readlines(File.join(@templatedir, 'partials', "#{name}.haml")).join('')
-      engine = Haml::Engine.new(lines)
+      engine = Haml::Engine.new(lines, @engineConfig)
       engine.render(self, hash)
     end
 
@@ -35,6 +36,8 @@ class HamlRenderer
     @templatedir = templatedir
     @outdir = outdir
     @verbose = verbose
+    @engineConfig = {ugly: true} unless verbose
+    @engineConfig ||= {}
   end
 
   def name
@@ -51,15 +54,15 @@ class HamlRenderer
 
     lines = IO::readlines(ifile).join('')
 
-    helper = HamlHelper.new(@templatedir, stats, @verbose)
+    helper = HamlHelper.new(@templatedir, stats, @verbose, @engineConfig)
 
-    engine = Haml::Engine.new(lines)
+    engine = Haml::Engine.new(lines, @engineConfig)
     lines = engine.render(helper)
 
     if !helper.get_layout.nil?
       puts "rendering layout '#{helper.get_layout}' ..." if @verbose
       layout = IO::readlines(File.join(@templatedir, 'layouts', helper.get_layout + '.haml')).join('')
-      engine = Haml::Engine.new(layout)
+      engine = Haml::Engine.new(layout, @engineConfig)
       lines = engine.render(helper, :content => lines)
     end
 
