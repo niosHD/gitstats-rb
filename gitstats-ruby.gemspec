@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name        = 'gitstats-ruby'
-  s.version     = '1.0.3'
+  s.version     = '1.1.0'
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['Christoph Plank']
   s.email       = ['chrisistuff@gmail.com']

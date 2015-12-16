@@ -1,6 +1,6 @@
 # gitstats-ruby
 
-gitstats-ruby is a clone of http://gitstats.sourceforge.net written in ruby. It's written to support templates and should be easily extendable.
+gitstats-ruby is a clone of [gitstats](http://gitstats.sourceforge.net) written in ruby. It's written to support templates and should be easily extendable.
 
 ## Installation
 
@@ -8,13 +8,14 @@ gitstats-ruby is a clone of http://gitstats.sourceforge.net written in ruby. It'
 
 ## Getting started
 
-The basic usage is quite simple. Just run gitstats with the git directory as parameter. If you want to generate stats of more than one repository just list them one after another. Note that this will generate only one statistic but consider the commits from all repositories.
-Additionally you can also specify a name and a ref for each repository. To do this please use the following format: `<name>:<path to repository>:<ref>`.
+The basic usage is quite simple. Just run `gitstats` with the git directory as parameter. If you want to generate stats of more than one repository just list them one after another. Note that this will generate only one statistic but consider the commits from all repositories.
+Additionally, you can also specify a name and a ref for each repository via the following format: `<name>:<path to repository>:<ref>`.
+
 For example:
 
     gitstats gitstats-ruby:.:master
 
-To use the new template based on [bootstrap](http://getbootstrap.com) and [highcharts](http://www.highcharts.com) (kindly contributed by niosHD) try the following:
+To use the new template based on [bootstrap](http://getbootstrap.com), [highcharts](http://www.highcharts.com) and [DataTables](https://www.datatables.net/) (kindly contributed by niosHD) try the following:
 
     gitstats -t highcharts gitstats-ruby:.:master
 
@@ -32,24 +33,24 @@ Please note that this cache can only be used when working on the same repositori
 
 ### commit-cache
 
-As already mentioned this cache is only useful if you want to develope new statistic classes. It works by caching the internal commit objects to a per repository file that can be reread when running again. This is especially useful if you experiment with big repositories (i.e. the linux kernel with ~275000 commits) where this cache is about twice as fast as the `git log` command used internally.
+As already mentioned this cache is only useful if you want to develope new statistic classes. It works by caching the internal commit objects to a per repository file that can be reread when running again. This is especially useful if you experiment with big repositories where this cache is about twice as fast as the `git log` command used internally.
 
-This cache can be activated with the `-C` command line flag. By default the commitcache is written into the output directory (./stats by default). If you want to use another directory you can specify it by using `--commitcache <directory name>`.
+This cache can be activated with the `-C` command line flag. By default the commitcache is written into the output directory (`./stats` by default). If you want to use another directory you can specify it by using `--commitcache <directory name>`.
 
 ## Examples
 
-* [gitstats-ruby](http://chrisistuff.github.com/gitstats-ruby/gitstats-ruby/)
-* [Linux](http://chrisistuff.github.com/gitstats-ruby/linux/)
+* gitstats-ruby: [default](http://nioshd.github.io/gitstats-ruby/gitstats-ruby/), [highcharts](http://nioshd.github.io/gitstats-ruby/gitstats-ruby-highcharts/)
+* Linux: [default](http://nioshd.github.io/gitstats-ruby/linux/), [highcharts](http://nioshd.github.io/gitstats-ruby/linux-highcharts/)
 
 ## Dependencies
 
 * [HAML](http://haml-lang.com)
 * [SASS](http://sass-lang.com)
 * [Compass](http://compass-style.org)
+* [Compass-blueprint](http://compass-blueprint.org/)
 * [Gnuplot (GEM)](http://rubygems.org/gems/gnuplot)
 * [Gnuplot binary](http://www.gnuplot.info/)
 
 ## License
 
-See LICENSE
-
+The project is licensed under GPLv3. The details can be found in the `LICENSE` file.
