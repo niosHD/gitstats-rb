@@ -36,7 +36,7 @@
     chart_activity_per_week_last_year.label_y_axis  = "Number of commits";
     chart_activity_per_week_last_year.label_y2_axis = 'Changed lines';
     chart_activity_per_week_last_year.target        = '#chart_activity_per_week_last_year';
-    chart_activity_per_week_last_year.categories    = #{(1..52).map{ |v| v.to_s }.reverse};
+    chart_activity_per_week_last_year.categories    = #{(0..51).map{ |v| v.to_s }.reverse};
     chart_activity_per_week_last_year.series        = [{"name":"Commits","yAxis": 0,"data":#{commits.values.reverse}},{"name":"Added lines","color": "#6CC644","yAxis": 1,"data":#{lines_added.values.reverse}},{"name":"Deleted lines","color": "#BD2C00","yAxis": 1,"data":#{lines_deleted.values.reverse}}];
 
     $(document).ready(function() {
