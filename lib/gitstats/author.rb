@@ -18,10 +18,6 @@ class Author
     @email = email
   end
 
-  def <=>(b)
-    to_i <=> b.to_i
-  end
-
   def to_s
     if self.class.include_mail
       "#{name} <#{email}>"
