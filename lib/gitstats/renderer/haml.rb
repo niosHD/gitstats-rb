@@ -36,8 +36,7 @@ class HamlRenderer
     @templatedir = templatedir
     @outdir = outdir
     @verbose = verbose
-    @engineConfig = {ugly: true} unless verbose
-    @engineConfig ||= {}
+    @engineConfig = {}
   end
 
   def name
