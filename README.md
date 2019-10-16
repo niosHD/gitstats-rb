@@ -13,20 +13,14 @@ The basic usage is quite simple. Just run `gitstats` with the git directory as
 parameter. If you want to generate stats of more than one repository just list
 them one after another. Note that this will generate only one statistic but
 consider the commits from all repositories. Additionally, you can also specify a
-name and a ref for each repository via the following format: `<name>:<path to
-repository>:<ref>`.
+name and a ref for each repository via the following format:
+`<name>:<path to repository>:<ref>`.
 
 For example:
 
     gitstats gitstats-rb:.:master
 
-To use the new template based on [bootstrap](http://getbootstrap.com),
-[highcharts](http://www.highcharts.com) and
-[DataTables](https://www.datatables.net/) try the following:
-
-    gitstats -t highcharts gitstats-rb:.:master
-
-For more options please read sections about caching below or run `gitstats -h`.
+For more options please read sections about caching below and run `gitstats -h`.
 
 ## Caching
 
@@ -56,13 +50,13 @@ as the `git log` command used internally.
 
 This cache can be activated with the `-C` command line flag. By default the
 commit-cache is written into the output directory (`./stats` by default). If you
-want to use another directory you can specify it by using `--commitcache
-<directory name>`.
+want to use another directory you can specify it by using
+`--commitcache <directory name>`.
 
 ## Examples
 
-* gitstats-rb: [gnuplot](http://nioshd.github.io/gitstats-rb/gitstats-ruby/),
-                 [highcharts](http://nioshd.github.io/gitstats-rb/gitstats-ruby-highcharts/)
+* gitstats-rb: [gnuplot](http://nioshd.github.io/gitstats-rb/gitstats-rb/),
+               [highcharts](http://nioshd.github.io/gitstats-rb/gitstats-rb-highcharts/)
 * Linux: [gnuplot](http://nioshd.github.io/gitstats-rb/linux/),
          [highcharts](http://nioshd.github.io/gitstats-rb/linux-highcharts/)
 

@@ -98,11 +98,11 @@ $options[:statcache] = File.join($options[:out], '.statcache') if $options[:stat
 $options[:commitcache_dir] = $options[:out] if $options[:commitcache_dir].nil?
 
 # template selection
-# -> use the packaged gnuplot template when nothing has been specified
+# -> use the packaged highcharts template when nothing has been specified
 # -> use the specified template when it exists
 # -> use an packaged alternative template when the names match
 templateRoot = File.expand_path(File.join(File.dirname(__FILE__), '..', 'template'))
-$options[:template] = File.join(templateRoot, 'gnuplot') if $options[:template].nil?
+$options[:template] = File.join(templateRoot, 'highcharts') if $options[:template].nil?
 
 unless File.directory?($options[:template])
   template = File.join(templateRoot, $options[:template])
