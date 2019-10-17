@@ -66,7 +66,13 @@ class Git
     open_cache unless @cachefile.nil?
 
     commit = nil
-    sh("git log --reverse --summary --numstat --pretty=format:\"HEADER: %at %ai %H %T %aN <%aE>\" #{range}") do |line|
+    sh("git log --reverse --summary --numstat --encoding=utf-8 --pretty=format:\"HEADER: %at %ai %H %T %aN <%aE>\" #{range}") do |line|
+      # My `git log` sometimes returns non utf-8 strings...
+      # The workaround tries to recover from such scenarios.
+      unless line.valid_encoding?
+        line = line.force_encoding('ISO-8859-15').encode!('UTF-8', :invalid => :replace, :undef => :replace, :replace => "")
+      end
+
       if line =~ /^HEADER:/
         unless commit.nil?
           write_cache(commit) unless @cachefile.nil?
