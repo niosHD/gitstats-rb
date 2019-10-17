@@ -169,7 +169,7 @@ ARGV.each do |path|
   name, path, ref = path.split(':')
   path ||= name
   ref ||= 'HEAD'
-  stat << [name, path, ref]
+  stat << [name, File.expand_path(path), ref]
 end
 
 if cache_loaded

@@ -55,10 +55,10 @@ want to use another directory you can specify it by using
 
 ## Examples
 
-* gitstats-rb: [gnuplot](http://nioshd.github.io/gitstats-rb/gitstats-rb-gnuplot/),
-               [highcharts](http://nioshd.github.io/gitstats-rb/gitstats-rb-highcharts/)
-* Linux: [gnuplot](http://nioshd.github.io/gitstats-rb/linux-gnuplot/),
-         [highcharts](http://nioshd.github.io/gitstats-rb/linux-highcharts/)
+* gitstats-rb: [highcharts](http://nioshd.github.io/gitstats-rb/gitstats-rb-highcharts/),
+               [gnuplot](http://nioshd.github.io/gitstats-rb/gitstats-rb-gnuplot/)
+* Linux: [highcharts](http://nioshd.github.io/gitstats-rb/linux-highcharts/),
+         [gnuplot](http://nioshd.github.io/gitstats-rb/linux-gnuplot/)
 
 ## Dependencies
 
