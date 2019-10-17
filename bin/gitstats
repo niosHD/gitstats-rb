@@ -186,6 +186,7 @@ ensure
   if $options[:cache]
     puts 'writing cache ...' unless $options[:quiet]
     cache = Marshal::dump(stat)
+    FileUtils.mkdir_p(File.dirname($options[:statcache]))
     File.new($options[:statcache], 'w').write(cache)
   end
 end

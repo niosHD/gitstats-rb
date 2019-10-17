@@ -12,6 +12,7 @@ class Git
   end
 
   def open_cache
+    FileUtils.mkdir_p(File.dirname(@cachefile))
     @cache = File.new(@cachefile, 'a')
   end
 
